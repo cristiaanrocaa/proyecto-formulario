@@ -3,6 +3,7 @@ const provinciaSelect = document.getElementById("provincia");
 const poblacioSelect = document.getElementById("poblacio");
 const imageContainer = document.getElementById("image-container");
 const meteoContainer = document.getElementById("meteo-container");
+const batteryContainer = document.getElementById("battery-container"); 
 
 const API_KEY = "c390d89dbbc4a7b29d0fd426423909b2"; // clave de la API de OpenWeatherMap
 
@@ -15,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         getWikimediaImages();
     });
+
+    // Llamar a la función para obtener información de la batería
+    obtenerEstadoBateria();
 });
 
 // Función para obtener Comunidades Autónomas
@@ -142,4 +146,24 @@ function mostrarMeteo(data) {
         <p>💨 Viento: ${data.wind.speed} km/h</p>
         <p>💧 Humedad: ${data.main.humidity}%</p>
     `;
+}
+
+// Función para obtener y mostrar el estado de la batería
+function obtenerEstadoBateria() {
+    if ("getBattery" in navigator) {
+        navigator.getBattery().then(function(battery) {
+            const batteryLevel = (battery.level * 100).toFixed(0); // Porcentaje de batería
+            const charging = battery.charging ? "Sí" : "No"; // Si está cargando o no
+            const timeLeft = battery.charging ? battery.dischargingTime / 60 : "Cargando..."; // Tiempo restante de batería (en minutos)
+
+            batteryContainer.innerHTML = `
+                <h3>Estado de la Batería</h3>
+                <p>🔋 Nivel de batería: ${batteryLevel}%</p>
+                <p>⚡ Cargando: ${charging}</p>
+                <p>⏳ Tiempo restante: ${timeLeft} minutos</p>
+            `;
+        });
+    } else {
+        batteryContainer.innerHTML = "<p>La API de batería no es compatible con tu navegador.</p>";
+    }
 }
