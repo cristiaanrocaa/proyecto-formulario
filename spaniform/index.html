@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulari de Dades</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Descobreix Espanya</h1>    
+    <form id="formulari">
+        <label for="ccaa">Comunitat Autònoma:</label>
+        <select name="ccaa" id="ccaa">
+            <option value="" disabled selected>Selecciona una comunitat</option>
+        </select><br><br>
+
+        <label for="provincia">Província:</label>
+        <select name="provincia" id="provincia">
+            <option value="" disabled selected>Selecciona una província</option>
+        </select><br><br>
+
+        <label for="poblacio">Població:</label>
+        <select name="poblacio" id="poblacio">
+            <option value="" disabled selected>Selecciona una població</option>
+        </select><br><br>
+
+        <input type="submit" value="Enviar">
+
+        <div id="meteo-container" style="width: 370px; padding: 20px; border: 1px solid #ccc; height: auto;"></div>
+    </form>
+    
+    <div id="image-container"></div>
+
+    <div class="api_explicacion">
+        <p>La API que he triat va sobre el clima de cada poblacio en temps real.
+            Perque es mostri el clima de la poblacio triada, has de clicar sobre una imatge de les que et mostra, llavors directament es mostra el recuadre de el clima(temperatura).
+            He tret la API de la pagina OpenWeather. Perque la API funciones he creat una clau que li he posat com a nom clima. 
+            Un cop creada et donava una clau amb molts digits, un cop amb aquells digits els he introduit al js perque pugues funcionar la API de clima.
+            He triat la API de temperatura en temps real perque hem semblava interesant i curios i m'ha fet gracia introduir aquesta API al meu projecte.
+        </p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
